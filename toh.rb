@@ -42,9 +42,16 @@ def valid_choice?
 
 end
 
+def exit?(player_input="")
+		if player_input.to_s.upcase == "EXIT"
+			exit
+		end
+end
+
 
 
 number_of_discs = valid_choice?
+
 
 towers_hash = { 0 => ((1..number_of_discs).to_a.reverse), 1 => [], 2 => [] }
 
@@ -85,27 +92,33 @@ while valid_move == false do
 	move_to_tower = gets.chomp.to_i
 	puts ""
 
+	if (1..3) === move_to_tower
+		# if the selected tower is empty we can place it there
+		if towers_hash[ ( move_to_tower - 1 ) ].empty? == true
 
-	# if the selected tower is empty we can place it there
-	if towers_hash[ ( move_to_tower - 1 ) ].empty? == true
+			valid_move = true
+			towers_hash[ ( move_to_tower - 1) ] << disc_being_moved
 
-		valid_move = true
-		towers_hash[ ( move_to_tower - 1) ] << disc_being_moved
+		# if the selected tower is not empty then we check if the disc is biiger than the disc being moved
+		elsif towers_hash[ ( move_to_tower - 1 ) ].empty? == false && disc_being_moved > towers_hash[ ( move_to_tower - 1 ) ].last
 
-	# if the selected tower is not empty then we check if the disc is biiger than the disc being moved
-	elsif towers_hash[ ( move_to_tower - 1 ) ].empty? == false && disc_being_moved > towers_hash[ ( move_to_tower - 1 ) ].last
+			puts "Your disc is larger than tower #{move_to_tower}'s disc \r"
+			puts ""
+			puts "Please select another tower"
 
-		puts "Your disc is larger than tower #{move_to_tower}'s disc \r"
+		# if the disc to move is small than the destination, we place it
+		elsif towers_hash[ ( move_to_tower - 1 ) ].empty? == false && disc_being_moved < towers_hash[ ( move_to_tower - 1 ) ].last
+
+			towers_hash[ ( move_to_tower - 1 ) ] << disc_being_moved
+
+			#change the valid move to true to end the while loop
+			valid_move = true
+
+		end
+	else
+		puts "Please select another tower to move to"
+		print towers_hash
 		puts ""
-		puts "Please select another tower"
-
-	# if the disc to move is small than the destination, we place it
-	elsif towers_hash[ ( move_to_tower - 1 ) ].empty? == false && disc_being_moved < towers_hash[ ( move_to_tower - 1 ) ].last
-		towers_hash[ ( move_to_tower - 1 ) ] << disc_being_moved
-
-		#change the valid move to true to end the while loop
-		valid_move = true
-
 	end
 
 end #/. Move to Tower While Loop
