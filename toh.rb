@@ -48,6 +48,8 @@ number_of_discs = valid_choice?
 
 towers_hash = { 0 => ((1..number_of_discs).to_a.reverse), 1 => [], 2 => [] }
 
+victory = { 0 => [], 1 => [], 2 => ((1..number_of_discs).to_a.reverse) }
+
 disc_being_moved = 0
 valid_move = false
 
@@ -62,14 +64,8 @@ move_from_tower = gets.chomp.to_i
 	if (1..3) === move_from_tower
 		if towers_hash[( move_from_tower - 1 )].empty? == false
 			valid_move = true
-			case move_from_tower
-				when 1
-					disc_being_moved = towers_hash[0].pop
-				when 2
-					disc_being_moved = towers_hash[1].pop
-				when 3
-					disc_being_moved = towers_hash[2].pop
-			end
+
+			disc_being_moved = towers_hash[( move_from_tower - 1 )].pop
 		end
 	end
 
@@ -83,7 +79,6 @@ puts ""
 # for printing the towers
 # start by receiving the current arrays of each tower
 
-
 case move_to_tower
 	when 1
 		towers_hash[0] << disc_being_moved
@@ -110,14 +105,8 @@ move_from_tower = gets.chomp.to_i
 	if (1..3) === move_from_tower
 		if towers_hash[( move_from_tower - 1 )].empty? == false
 			valid_move = true
-			case move_from_tower
-				when 1
-					disc_being_moved = towers_hash[0].pop
-				when 2
-					disc_being_moved = towers_hash[1].pop
-				when 3
-					disc_being_moved = towers_hash[2].pop
-			end
+
+			disc_being_moved = towers_hash[( move_from_tower - 1 )].pop
 		end
 	end
 
@@ -155,14 +144,7 @@ move_from_tower = gets.chomp.to_i
 	if (1..3) === move_from_tower
 		if towers_hash[( move_from_tower - 1 )].empty? == false
 			valid_move = true
-			case move_from_tower
-				when 1
-					disc_being_moved = towers_hash[0].pop
-				when 2
-					disc_being_moved = towers_hash[1].pop
-				when 3
-					disc_being_moved = towers_hash[2].pop
-			end
+			disc_being_moved = towers_hash[( move_from_tower - 1 )].pop
 		end
 	end
 
