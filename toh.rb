@@ -58,16 +58,19 @@ valid_move = false
 
 while valid_move == false do
 
-puts "Please enter which tower to move your disc from"
-print ">"
+print towers_hash
+puts ""
+print "Move disc from?  "
+
 move_from_tower = gets.chomp.to_i
 
 	if (1..3) === move_from_tower
 		if towers_hash[( move_from_tower - 1 )].empty? == false
 			valid_move = true
-
 			disc_being_moved = towers_hash[( move_from_tower - 1 )].pop
+		elsif puts "Please select another tower"
 		end
+	elsif puts "Please select another tower"
 	end
 
 end
@@ -78,8 +81,7 @@ valid_move = false
 # while loop to check that the tower MOVING TO is valid
 while valid_move == false do
 
-	puts "Please enter which tower to move the disc to"
-	print ">"
+	print "  Move disc to? "
 	move_to_tower = gets.chomp.to_i
 	puts ""
 
@@ -94,7 +96,6 @@ while valid_move == false do
 	elsif towers_hash[ ( move_to_tower - 1 ) ].empty? == false && disc_being_moved > towers_hash[ ( move_to_tower - 1 ) ].last
 
 		puts "Your disc is larger than tower #{move_to_tower}'s disc \r"
-		print towers_hash
 		puts ""
 		puts "Please select another tower"
 
@@ -114,8 +115,7 @@ end #/. Move to Tower While Loop
 # start by receiving the current arrays of each tower
 
 
-print towers_hash
-puts ""
+
 
 end # /.victory loop
 
