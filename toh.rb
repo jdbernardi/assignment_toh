@@ -51,9 +51,10 @@ towers_hash = { 0 => ((1..number_of_discs).to_a.reverse), 1 => [], 2 => [] }
 victory = { 0 => [], 1 => [], 2 => ((1..number_of_discs).to_a.reverse) }
 
 disc_being_moved = 0
+
+while towers_hash != victory do
+
 valid_move = false
-
-
 
 while valid_move == false do
 
@@ -71,107 +72,54 @@ move_from_tower = gets.chomp.to_i
 
 end
 
-puts "Please enter which tower to move the disc to"
-print ">"
-move_to_tower = gets.chomp.to_i
-puts ""
+# set up the valid move as false for the while loop
+valid_move = false
+
+# while loop to check that the tower MOVING TO is valid
+while valid_move == false do
+
+	puts "Please enter which tower to move the disc to"
+	print ">"
+	move_to_tower = gets.chomp.to_i
+	puts ""
+
+
+	# if the selected tower is empty we can place it there
+	if towers_hash[ ( move_to_tower - 1 ) ].empty? == true
+
+		valid_move = true
+		towers_hash[ ( move_to_tower - 1) ] << disc_being_moved
+
+	# if the selected tower is not empty then we check if the disc is biiger than the disc being moved
+	elsif towers_hash[ ( move_to_tower - 1 ) ].empty? == false && disc_being_moved > towers_hash[ ( move_to_tower - 1 ) ].last
+
+		puts "Your disc is larger than tower #{move_to_tower}'s disc \r"
+		print towers_hash
+		puts ""
+		puts "Please select another tower"
+
+	# if the disc to move is small than the destination, we place it
+	elsif towers_hash[ ( move_to_tower - 1 ) ].empty? == false && disc_being_moved < towers_hash[ ( move_to_tower - 1 ) ].last
+		towers_hash[ ( move_to_tower - 1 ) ] << disc_being_moved
+
+		#change the valid move to true to end the while loop
+		valid_move = true
+
+	end
+
+end #/. Move to Tower While Loop
+
 
 # for printing the towers
 # start by receiving the current arrays of each tower
 
-case move_to_tower
-	when 1
-		towers_hash[0] << disc_being_moved
-	when 2
-		towers_hash[1] << disc_being_moved
-	when 3
-		towers_hash[2] << disc_being_moved
-	else
-		puts "Please enter a valid tower number"
-end
-
 
 print towers_hash
 puts ""
 
-valid_move = false
+end # /.victory loop
 
-while valid_move == false do
-
-puts "Please enter which tower to move your disc from"
-print ">"
-move_from_tower = gets.chomp.to_i
-
-	if (1..3) === move_from_tower
-		if towers_hash[( move_from_tower - 1 )].empty? == false
-			valid_move = true
-
-			disc_being_moved = towers_hash[( move_from_tower - 1 )].pop
-		end
-	end
-
-end
-
-
-puts "Please enter which tower to move the disc to"
-print ">"
-move_to_tower = gets.chomp.to_i
-puts ""
-
-case move_to_tower
-	when 1
-		towers_hash[0] << disc_being_moved
-	when 2
-		towers_hash[1] << disc_being_moved
-	when 3
-		towers_hash[2] << disc_being_moved
-	else
-		puts "Please enter a valid tower number"
-end
-
-
-print towers_hash
-puts ""
-
-valid_move = false
-
-while valid_move == false do
-
-puts "Please enter which tower to move your disc from"
-print ">"
-move_from_tower = gets.chomp.to_i
-
-	if (1..3) === move_from_tower
-		if towers_hash[( move_from_tower - 1 )].empty? == false
-			valid_move = true
-			disc_being_moved = towers_hash[( move_from_tower - 1 )].pop
-		end
-	end
-
-end
-
-
-puts "Please enter which tower to move the disc to"
-print ">"
-move_to_tower = gets.chomp.to_i
-puts ""
-
-
-case move_to_tower
-	when 1
-		towers_hash[0] << disc_being_moved
-	when 2
-		towers_hash[1] << disc_being_moved
-	when 3
-		towers_hash[2] << disc_being_moved
-	else
-		puts "Please enter a valid tower number"
-end
-
-
-print towers_hash
-puts ""
-
+puts "YOU WIN"
 # the discs must correspond to a size - an array for each tower can store the numbers
 	# pushing to the tower is placing a disc
 	# pop from a tower is removing a disc
