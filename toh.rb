@@ -7,7 +7,11 @@
 	# the player must take the top most disc - this can be a default
 # welcome the player to the game
 # request the number of discs to play with
+
+require 'pry'
+
 puts "Welcome to Tower of Hanoi"
+puts "If you ever want to stop type EXIT"
 
 
 # first start with the number of discs in the game
@@ -17,10 +21,30 @@ puts "Welcome to Tower of Hanoi"
 
 # removing the disc from the desired tower
 
-puts "Please enter the number of discs to play with"
-print ">"
-number_of_discs = gets.chomp.to_i
+# ensure the player disc selection is not an alpha character
+def valid_choice?
 
+  correct_selection = false
+
+	while correct_selection == false
+
+		puts "Please enter the number of discs to play with"
+		print ">"
+		number_of_discs = gets.chomp.to_i
+
+		if number_of_discs == 0
+			puts "Please enter a valid number"
+		else
+			return number_of_discs
+		end
+
+	end
+
+end
+
+
+
+number_of_discs = valid_choice?
 
 puts "Please enter which tower to move your disc from"
 print ">"
@@ -30,24 +54,28 @@ move_from_tower = gets.chomp.to_i
 puts "Please enter which tower to move the disc to"
 print ">"
 move_to_tower = gets.chomp.to_i
+puts ""
 
 tower_1 = (1..number_of_discs).to_a.reverse
 tower_2 = []
 tower_3 = []
 
-turn_count = 0
+
+# for printing the towers
+# start by receiving the current arrays of each tower
+
 
 disc_being_moved = 0
 
 case move_from_tower
-when 1
-  disc_being_moved = tower_1.pop
-when 2
-  disc_being_moved = tower_2.pop
-when 3
-  disc_being_moved = tower_3.pop
-else
-  puts "Please enter a tower number from 1-3"
+	when 1
+	  disc_being_moved = tower_1.pop
+	when 2
+	  disc_being_moved = tower_2.pop
+	when 3
+	  disc_being_moved = tower_3.pop
+	else
+	  puts "Please enter a tower number from 1-3"
 end
 
 case move_to_tower
@@ -61,11 +89,13 @@ case move_to_tower
 		puts "Please enter a valid tower number"
 end
 
+puts ""
 print tower_1
 puts ""
 print tower_2
 puts ""
 print tower_3
+puts ""
 
 puts "Please enter which tower to move your disc from"
 print ">"
@@ -75,17 +105,18 @@ move_from_tower = gets.chomp.to_i
 puts "Please enter which tower to move the disc to"
 print ">"
 move_to_tower = gets.chomp.to_i
+puts ""
 
 
 case move_from_tower
-when 1
-  disc_being_moved = tower_1.pop
-when 2
-  disc_being_moved = tower_2.pop
-when 3
-  disc_being_moved = tower_3.pop
-else
-  puts "Please enter a tower number from 1-3"
+	when 1
+	  disc_being_moved = tower_1.pop
+	when 2
+	  disc_being_moved = tower_2.pop
+	when 3
+	  disc_being_moved = tower_3.pop
+	else
+	  puts "Please enter a tower number from 1-3"
 end
 
 case move_to_tower
@@ -99,11 +130,14 @@ case move_to_tower
 		puts "Please enter a valid tower number"
 end
 
+puts ""
 print tower_1
 puts ""
 print tower_2
 puts ""
 print tower_3
+puts ""
+
 
 
 # the discs must correspond to a size - an array for each tower can store the numbers
