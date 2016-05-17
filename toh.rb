@@ -46,60 +46,127 @@ end
 
 number_of_discs = valid_choice?
 
+towers_hash = { 0 => ((1..number_of_discs).to_a.reverse), 1 => [], 2 => [] }
+
+disc_being_moved = 0
+valid_move = false
+
+
+
+while valid_move == false do
+
 puts "Please enter which tower to move your disc from"
 print ">"
 move_from_tower = gets.chomp.to_i
 
+	if (1..3) === move_from_tower
+		if towers_hash[( move_from_tower - 1 )].empty? == false
+			valid_move = true
+			case move_from_tower
+				when 1
+					disc_being_moved = towers_hash[0].pop
+				when 2
+					disc_being_moved = towers_hash[1].pop
+				when 3
+					disc_being_moved = towers_hash[2].pop
+			end
+		end
+	end
+
+end
 
 puts "Please enter which tower to move the disc to"
 print ">"
 move_to_tower = gets.chomp.to_i
 puts ""
-
-tower_1 = (1..number_of_discs).to_a.reverse
-tower_2 = []
-tower_3 = []
-
 
 # for printing the towers
 # start by receiving the current arrays of each tower
 
 
-disc_being_moved = 0
-
-case move_from_tower
-	when 1
-	  disc_being_moved = tower_1.pop
-	when 2
-	  disc_being_moved = tower_2.pop
-	when 3
-	  disc_being_moved = tower_3.pop
-	else
-	  puts "Please enter a tower number from 1-3"
-end
-
 case move_to_tower
 	when 1
-		tower_1 << disc_being_moved
+		towers_hash[0] << disc_being_moved
 	when 2
-		tower_2 << disc_being_moved
+		towers_hash[1] << disc_being_moved
 	when 3
-		tower_3 << disc_being_moved
+		towers_hash[2] << disc_being_moved
 	else
 		puts "Please enter a valid tower number"
 end
 
+
+print towers_hash
 puts ""
-print tower_1
-puts ""
-print tower_2
-puts ""
-print tower_3
-puts ""
+
+valid_move = false
+
+while valid_move == false do
 
 puts "Please enter which tower to move your disc from"
 print ">"
 move_from_tower = gets.chomp.to_i
+
+	if (1..3) === move_from_tower
+		if towers_hash[( move_from_tower - 1 )].empty? == false
+			valid_move = true
+			case move_from_tower
+				when 1
+					disc_being_moved = towers_hash[0].pop
+				when 2
+					disc_being_moved = towers_hash[1].pop
+				when 3
+					disc_being_moved = towers_hash[2].pop
+			end
+		end
+	end
+
+end
+
+
+puts "Please enter which tower to move the disc to"
+print ">"
+move_to_tower = gets.chomp.to_i
+puts ""
+
+case move_to_tower
+	when 1
+		towers_hash[0] << disc_being_moved
+	when 2
+		towers_hash[1] << disc_being_moved
+	when 3
+		towers_hash[2] << disc_being_moved
+	else
+		puts "Please enter a valid tower number"
+end
+
+
+print towers_hash
+puts ""
+
+valid_move = false
+
+while valid_move == false do
+
+puts "Please enter which tower to move your disc from"
+print ">"
+move_from_tower = gets.chomp.to_i
+
+	if (1..3) === move_from_tower
+		if towers_hash[( move_from_tower - 1 )].empty? == false
+			valid_move = true
+			case move_from_tower
+				when 1
+					disc_being_moved = towers_hash[0].pop
+				when 2
+					disc_being_moved = towers_hash[1].pop
+				when 3
+					disc_being_moved = towers_hash[2].pop
+			end
+		end
+	end
+
+end
 
 
 puts "Please enter which tower to move the disc to"
@@ -108,41 +175,24 @@ move_to_tower = gets.chomp.to_i
 puts ""
 
 
-case move_from_tower
-	when 1
-	  disc_being_moved = tower_1.pop
-	when 2
-	  disc_being_moved = tower_2.pop
-	when 3
-	  disc_being_moved = tower_3.pop
-	else
-	  puts "Please enter a tower number from 1-3"
-end
-
 case move_to_tower
 	when 1
-		tower_1 << disc_being_moved
+		towers_hash[0] << disc_being_moved
 	when 2
-		tower_2 << disc_being_moved
+		towers_hash[1] << disc_being_moved
 	when 3
-		tower_3 << disc_being_moved
+		towers_hash[2] << disc_being_moved
 	else
 		puts "Please enter a valid tower number"
 end
 
-puts ""
-print tower_1
-puts ""
-print tower_2
-puts ""
-print tower_3
-puts ""
 
-
+print towers_hash
+puts ""
 
 # the discs must correspond to a size - an array for each tower can store the numbers
 	# pushing to the tower is placing a disc
-	# popping from a tower is removing a disc
+	# pop from a tower is removing a disc
 # on the leftmost tower
 
 # the player will be prompted to make thier first move
