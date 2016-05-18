@@ -160,27 +160,4 @@ while towers_hash != victory do
 end # /.victory loop
 
 puts "YOU WIN"
-# the discs must correspond to a size - an array for each tower can store the numbers
-	# pushing to the tower is placing a disc
-	# pop from a tower is removing a disc
-# on the leftmost tower
 
-# the player will be prompted to make thier first move
-
-
-	# they will be asked which tower (1, 2, or 3)
-	# then they will be asked which tower to move to
-
-
-		# if the tower is empty the disc can go there
-
-
-
-
-			# the disc size needs to be checked to see if the disc is larger
-				# if it is larger
-					# the disc is placed
-				# if is is smaller the player is asked to select another tower
-		# the player wins if all the discs are stacked in the correct order on the last tower
-			# that tower can have a check if the array is the winning combo
-		# a check must be in place the original tower is not counted as a WIN

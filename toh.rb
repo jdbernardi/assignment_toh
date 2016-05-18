@@ -101,14 +101,19 @@ puts "If you ever want to stop type EXIT"
 
 number_of_discs = valid_choice_to_start?
 
+# store the original tower hash populated with the number of discs to start with ... the first tower[0] is reversed so the smallest disc(1) can be popped or pushed as game progresses
 towers_hash = { 0 => ( ( 1..number_of_discs).to_a.reverse ), 1 => [], 2 => [] }
 
+# the winning outcome is established which dupicates the first tower, only in the third tower - this will be checked in the while loop that encompasses the game
 victory = { 0 => [], 1 => [], 2 => ( (1..number_of_discs ).to_a.reverse ) }
 
+	# until the winning outcome is reached the loop continues
 	while towers_hash != victory do
 
 		# print the array each pass
 
+
+#############    MOVE FROM TOWER WHILE LOOP    ################
 
 		valid_move = false
 
@@ -148,7 +153,11 @@ victory = { 0 => [], 1 => [], 2 => ( (1..number_of_discs ).to_a.reverse ) }
 
 		end #/.While Loop for checking for a valid move from the tower
 
-	# set up the valid move as false for the while loop
+
+###############    MOVE TO TOWER WHILE LOOP     #####################
+
+
+		# reset the valid move to false for the move to tower while loop
 		valid_move = false
 
 		# while loop to check that the tower MOVING TO is valid
