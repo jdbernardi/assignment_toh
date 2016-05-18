@@ -18,11 +18,10 @@ require 'pry'
 
 		while correct_selection == false
 
-			puts "Please enter the number of discs to play with"
-			print ">"
 			number_of_discs = gets.chomp.to_i
+			discs_to_start_prompt
 
-			if number_of_discs == 0
+			if number_of_discs <= 0
 				puts "Please enter a valid number"
 			else
 				return number_of_discs
@@ -32,14 +31,23 @@ require 'pry'
 
 	end
 
+	def discs_to_start_prompt
+		puts "Please enter the number of discs to play with"
+		print "> "
+	end
 
 
 
 	def exit?( player_input = "" )
 			if player_input.to_s.upcase == "EXIT"
 				exit
+			else
+				return true
 			end
 	end
+
+
+
 
 
 
@@ -98,6 +106,7 @@ disc_being_moved = 0
 puts "Welcome to Tower of Hanoi"
 puts "If you ever want to stop type EXIT"
 
+discs_to_start_prompt
 
 number_of_discs = valid_choice_to_start?
 
