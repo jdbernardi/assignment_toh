@@ -18,8 +18,7 @@ require 'pry'
 
 		while correct_selection == false
 
-			number_of_discs = gets.chomp.to_i
-			discs_to_start_prompt
+			number_of_discs = get_input_or_exit
 
 			if number_of_discs <= 0
 				puts "Please enter a valid number"
@@ -34,16 +33,18 @@ require 'pry'
 	def discs_to_start_prompt
 		puts "Please enter the number of discs to play with"
 		print "> "
+
 	end
 
 
 
-	def exit?( player_input = "" )
-			if player_input.to_s.upcase == "EXIT"
-				exit
-			else
-				return true
-			end
+	def get_input_or_exit
+		input = gets.chomp
+		if input.upcase == "EXIT"
+			exit
+		else
+			return input.to_i
+		end
 	end
 
 
@@ -91,7 +92,8 @@ require 'pry'
 
 
 	def make_another_selection
-		puts "That move isn't allowed, please select another tower..."
+		system "clear"
+		puts "That move isn't allowed, select a new tower or return your disc..."
 	end
 
 
@@ -128,6 +130,8 @@ victory = { 0 => [], 1 => [], 2 => ( (1..number_of_discs ).to_a.reverse ) }
 
 		while valid_move == false do
 
+			system "clear"
+
 			# print tower hash so player can see status
 			print_towers( towers_hash, number_of_discs )
 
@@ -135,7 +139,7 @@ victory = { 0 => [], 1 => [], 2 => ( (1..number_of_discs ).to_a.reverse ) }
 			print "Move disc from?  "
 
 			# player inputs which tower they want to move from
-			move_from_tower = gets.chomp.to_i
+			move_from_tower = get_input_or_exit
 
 
 			# call the valid? method to make sure the selection is in range of the number of towers available
@@ -176,7 +180,7 @@ victory = { 0 => [], 1 => [], 2 => ( (1..number_of_discs ).to_a.reverse ) }
 			print "Move disc to? "
 
 			# store the player selection into the variable
-			move_to_tower = gets.chomp.to_i
+			move_to_tower = get_input_or_exit
 			puts ""
 
 			if valid_tower_choice?(move_to_tower) == true
@@ -194,6 +198,8 @@ victory = { 0 => [], 1 => [], 2 => ( (1..number_of_discs ).to_a.reverse ) }
 
 				# if the selected tower is not empty then we check if the disc is biiger than the disc being moved to generate a new selection if true
 				elsif towers_hash[ ( move_to_tower - 1 ) ].empty? == false && disc_being_moved > towers_hash[ ( move_to_tower - 1 ) ].last
+
+					system "clear"
 
 					puts "Your disc is larger than tower #{move_to_tower}'s disc"
 					puts ""
@@ -223,9 +229,7 @@ victory = { 0 => [], 1 => [], 2 => ( (1..number_of_discs ).to_a.reverse ) }
 				# prompt player they need to pick a valid move
 				puts make_another_selection
 		    puts ""
-
 			end
-
 		end #/. Move to Tower While Loop
 
 	end # /.victory loop only exits if player wins
