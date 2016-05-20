@@ -10,6 +10,8 @@ require 'pry'
 
 
 
+
+
 	# initial prompt for number of discs to play with
 	def discs_to_start_prompt
 
@@ -17,6 +19,10 @@ require 'pry'
 		print "> "
 
 	end
+
+
+
+
 
 
 	# output whenever there is an invalid choice for tower number
@@ -28,6 +34,9 @@ require 'pry'
 		puts "That move isn't allowed, select a new tower or return your disc..."
 
 	end
+
+
+
 
 
 	# ensure the player disc selection is not an alpha character
@@ -95,7 +104,7 @@ require 'pry'
 
 				}
 
-				# prints a nice divider below each tower printout
+				# prints a divider below each tower printout
 				print "#{'-' * number_of_discs}"
 
 				puts  ""
@@ -206,7 +215,7 @@ while towers_hash != victory do
 		player_move = get_input_or_exit
 		puts ""
 
-		if valid_tower_choice?(player_move) == true
+		if valid_tower_choice?( player_move ) == true
 
 			# if the selected tower is empty we can place it there - easy peezy
 			if towers_hash[ ( player_move - 1 ) ].empty? == true
@@ -229,7 +238,7 @@ while towers_hash != victory do
 				puts make_another_selection
 
 				# print tower hash so player can see status
-				print_towers(towers_hash, number_of_discs)
+				print_towers( towers_hash, number_of_discs )
 
 
 
@@ -261,7 +270,7 @@ end # /.victory loop only exits if player wins
 
 
 # print tower hash so player can see status
-print_towers(towers_hash, number_of_discs)
+print_towers( towers_hash, number_of_discs )
 
 # display victory message
 puts "YOU WIN! Nice Work!"
