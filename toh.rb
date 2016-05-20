@@ -129,7 +129,7 @@ require 'pry'
 
 # welcome the player to the game
 puts "Welcome to Tower of Hanoi"
-puts "If you ever want to stop type EXIT"
+puts "If you ever want to stop type exit"
 
 # call method to prompt for number of discs to play with
 discs_to_start_prompt
