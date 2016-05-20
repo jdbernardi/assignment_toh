@@ -155,7 +155,7 @@ while towers_hash != victory do
 	# print the array each pass
 
 
-#############    MOVE FROM TOWER WHILE LOOP    ################
+#############    MOVE FROM -- WHILE LOOP    ################
 
 
 	# create variable set to FALSE to control while loop until player makes a valid selection
