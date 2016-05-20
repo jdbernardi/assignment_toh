@@ -118,7 +118,7 @@ require 'pry'
 	# checks that the player is only selecting a tower 1 2 or 3 - returning true will allow players to progress
 	def valid_tower_choice?( tower_choice )
 
-		( 1..3 ) === tower_choice ?  true :  false
+		( 1..3 ) === tower_choice
 
 	end
 
@@ -150,7 +150,7 @@ victory = { 0 => [], 1 => [], 2 => ( (1..number_of_discs ).to_a.reverse ) }
 
 
 # until the winning outcome is reached the loop continues
-while towers_hash != victory do
+until towers_hash == victory do
 
 	# print the array each pass
 
@@ -162,7 +162,7 @@ while towers_hash != victory do
 	valid_move = false
 
 
-	while valid_move == false do
+	until valid_move do
 
 		# print tower hash so player can see status
 		print_towers( towers_hash, number_of_discs )
@@ -175,10 +175,10 @@ while towers_hash != victory do
 
 
 		# call the valid? method to make sure the selection is in range of the number of towers available
-		if valid_tower_choice?( player_move ) == true
+		if valid_tower_choice?( player_move )
 
 			# if the tower they want to move from has discs in it they can make a move
-			if towers_hash[ ( player_move - 1 ) ].empty? == false
+			if towers_hash[ ( player_move - 1 ) ].empty? != true
 
 				# change the variable to true to exit the while loop
 				valid_move = true
@@ -187,12 +187,16 @@ while towers_hash != victory do
 				disc_being_moved = towers_hash[ ( player_move - 1 ) ].pop
 
 			# otherwise they need to select the right tower
-			elsif make_another_selection
+			else
+
+				make_another_selection
 
 			end
 
 		# otherwise they need to select the right tower
-		elsif make_another_selection
+		else
+
+			make_another_selection
 
 		end
 
@@ -206,7 +210,7 @@ while towers_hash != victory do
 	valid_move = false
 
 	# while loop to check that the tower MOVING TO is valid
-	while valid_move == false do
+	until valid_move do
 
 		# ask the player where to move the disc
 		print "Move disc to? "
@@ -215,10 +219,10 @@ while towers_hash != victory do
 		player_move = get_input_or_exit
 		puts ""
 
-		if valid_tower_choice?( player_move ) == true
+		if valid_tower_choice?( player_move )
 
 			# if the selected tower is empty we can place it there - easy peezy
-			if towers_hash[ ( player_move - 1 ) ].empty? == true
+			if towers_hash[ ( player_move - 1 ) ].empty?
 
 				# generate the true value to exit the while loop
 				valid_move = true
