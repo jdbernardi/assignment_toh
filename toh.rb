@@ -244,11 +244,8 @@ until towers_hash == victory do
 				# print tower hash so player can see status
 				print_towers( towers_hash, number_of_discs )
 
-
-
-
 			# if the array corresponding the tower the player selected is empty and the disc the are moving is 'smaller' they can make this move
-			elsif towers_hash[ ( player_move - 1 ) ].empty? == false && disc_being_moved < towers_hash[ ( player_move - 1 ) ].last
+			else
 
 				# populate the disc to move to the hash that corresponds to the tower the player selected
 				towers_hash[ ( player_move - 1 ) ] << disc_being_moved
